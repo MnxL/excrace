@@ -68,3 +68,20 @@ echo ${array_name2[@]} # 获取数组全部元素
 echo ${#array_name[@]} # 获取数组元素个数
 echo ${#array_name[*]} # 获取数组元素个数
 echo ${#array_name[1]} # 获取数组某个元素的长度
+
+# ###截取
+var=http://www.aaa.com/123.htm
+echo $var
+echo ${var#*//} "www.aaa.com/123.htm"
+echo ${var#*/} "/www.aaa.com/123.htm"
+echo ${var##*//} "www.aaa.com/123.htm"
+echo ${var##*/} "123.htm"
+# #、##表示从左边开始删除，#删除到第一个指定的字符，##删除到最后一个指定的字符
+# %、%%标识从右边开始删除
+# %截取
+echo ${var%/*} "http://www.aaa.com"
+echo ${var%%/*} "http:"
+
+echo ${var:0:5} "http:"
+echo ${var:0-7:3} "123"
+echo ${var:0-7} "123.htm"
