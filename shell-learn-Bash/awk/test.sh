@@ -74,3 +74,15 @@ awk '$2 !~ /th/ {print $2,$4}' log.txt
 echo -----------------------------------
 echo 不包含“re”的行
 awk '!/re/' log.txt
+
+
+echo -----------------------------------
+echo 计算文件大小
+ls -l *.txt | awk '{sum+=$5} END {print sum}'
+
+echo 长度大于15的行
+awk 'length>15' log.txt
+
+echo 打印九九乘法表
+seq 9 | sed 'H;g' | awk -v RS='' '{for(i=1;i<=NF;i++)printf("%dx%d=%d%s", i, NR, i*NR, i==NR?"\n":"\t")} END{print "------------------------------\n"}'
+
