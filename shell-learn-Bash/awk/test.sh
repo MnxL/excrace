@@ -35,3 +35,42 @@ echo -----------------------------------
 
 # 用法四 awk -f {awk脚本} {文件名}
 echo awk -f cal.awk log.txt
+echo -----------------------------------
+
+
+echo 过滤第一列大于2的行
+awk '$1>2' log.txt
+echo -----------------------------------
+
+echo 过滤第一列等于2的行，输出1、3列
+awk '$1==2 {print $1, $3}' log.txt
+echo -----------------------------------
+
+echo 过滤第一列大于2并且第二列等于‘Are’的列，输出1、2、3列
+awk '$1>2 && $2=="Are" {print $1,$2,$3}' log.txt
+echo -----------------------------------
+
+echo 内建变量
+awk 'BEGIN{printf "%4s %4s %4s %4s %4s %4s %4s %4s %4s\n","FILENAME","ARGC","FNR","FS","NF","NR","OFS","ORS","RS";printf "-----------------------------------\n"} {printf "%4s %4s %4s %4s %4s %4s %4s %4s %4s\n",FILENAME,ARGC,FNR,FS,NF,NR,OFS,ORS,RS}' log.txt
+
+awk -F\' 'BEGIN{printf "%4s %4s %4s %4s %4s %4s %4s %4s %4s\n","FILENAME","ARGC","FNR","FS","NF","NR","OFS","ORS","RS";printf "-----------------------------------\n"} {printf "%4s %4s %4s %4s %4s %4s %4s %4s %4s\n",FILENAME,ARGC,FNR,FS,NF,NR,OFS,ORS,RS}' log.txt
+echo 指定输出分隔符为$
+awk '{print $1,$2,$5}' OFS=" $ " log.txt
+
+echo -----------------------------------
+echo \n正则匹配
+echo 输出第二列包含"th"，并打印第二列与第四列
+awk '$2 ~ /th/ {print $2,$4}' log.txt
+echo -----------------------------------
+echo 输出包含“re”的行
+awk '/re/ ' log.txt
+echo -----------------------------------
+echo 忽略大小写
+awk 'BEGIN{IGNORECASE=1} /this/' log.txt
+echo -----------------------------------
+echo 模式取反
+echo 第二列不包含“th”，打印二四列
+awk '$2 !~ /th/ {print $2,$4}' log.txt
+echo -----------------------------------
+echo 不包含“re”的行
+awk '!/re/' log.txt
