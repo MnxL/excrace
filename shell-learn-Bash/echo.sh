@@ -18,7 +18,7 @@ echo "After one line\n"
 echo -e "OK! \c"  # \c 不换行
 echo "After one line\c"
 
-echo "It is a test " > myFile
+echo "It is a test " > echoOutFile
 
 echo '$name\"' # 原样输出字符串，不转义或取变量
 
